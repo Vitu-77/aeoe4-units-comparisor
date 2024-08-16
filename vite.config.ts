@@ -15,9 +15,8 @@ export default defineConfig({
     alias: {
       "@infra": "/src/infra",
       "@assets": "/src/assets",
-      "@lib": "/src/lib",
       "@core": "/src/core",
-      "@services": "/src/services",
+      "@domain": "/src/domain",
     },
   },
   plugins: [react()],

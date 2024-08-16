@@ -1,0 +1,18 @@
+export enum CivsBackgroundColors {
+  ABBASID = 'abbasid',
+  AYYUBIDS = 'ayyubids',
+  BYZANTINES = 'rgba(42, 38, 47, 1)',
+  CHINESE = 'chinese',
+  DELHI = 'delhi',
+  ENGLISH = 'english',
+  FRENCH = 'french',
+  HRE = 'rgba(45, 43, 36, 1)',
+  JAPANESE = 'japanese',
+  JEANNE_DARC = 'jeannedarc',
+  MALIANS = 'malians',
+  MONGOLS = 'mongols',
+  OOTD = 'orderofthedragon',
+  ottomans = 'ottomans',
+  RUS = 'rus',
+  ZHU_XI = 'zhuxi',
+}

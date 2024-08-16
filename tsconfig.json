@@ -23,10 +23,9 @@
     "baseUrl": "./",
     "paths": {
       "@infra/*": ["src/infra/*"],
-      "@lib/*": ["src/lib/*"],
       "@core/*": ["src/core/*"],
       "@assets/*": ["src/assets/*"],
-      "@services/*": ["src/services/*"]
+      "@domain/*": ["src/domain/*"]
     }
   },
   "include": ["src", "src/**/*"],

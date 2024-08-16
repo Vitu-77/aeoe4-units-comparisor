@@ -10,10 +10,9 @@
     "baseUrl": "./",
     "paths": {
       "@infra/*": ["src/infra/*"],
-      "@lib/*": ["src/lib/*"],
-      "@assets/*": ["src/assets/*"],
       "@core/*": ["src/core/*"],
-      "@services/*": ["src/services/*"]
+      "@assets/*": ["src/assets/*"],
+      "@domain/*": ["src/domain/*"]
     }
   },
   "include": ["vite.config.ts", "src", "src/**/*"]

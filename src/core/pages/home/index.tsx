@@ -1,13 +1,16 @@
 import { ComparisorGrid } from "@core/components/comparisor-grid";
 import { Unit } from "@core/components/unit";
+import { ARCHER, LANDSKENETCH, ROYAL_KNIGHT, WAR_ELEPHANT } from "@core/pages/home/data";
 import { CivilizationsEnum } from "@domain/enums/civs";
 import React, { useState } from "react";
 
 export function Home() {
   const [units, setUnits] = useState([
-    { civ: CivilizationsEnum.BYZANTINES, name: "Limitanei" },
-    { civ: CivilizationsEnum.HRE, name: "Prelade" },
-    { civ: CivilizationsEnum.BYZANTINES, name: "Cataphract" },
+    { civ: CivilizationsEnum.DELHI, unit: WAR_ELEPHANT },
+    { civ: CivilizationsEnum.JEANNE_DARC, unit: ROYAL_KNIGHT },
+    { civ: CivilizationsEnum.BYZANTINES, unit: ARCHER },
+    { civ: CivilizationsEnum.HRE, unit: LANDSKENETCH },
+    { civ: CivilizationsEnum.FRENCH, unit: ROYAL_KNIGHT },
   ]);
 
   return (

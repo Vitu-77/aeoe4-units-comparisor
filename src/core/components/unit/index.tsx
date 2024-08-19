@@ -1,29 +1,32 @@
 import React from "react";
 
-import { Stats } from "@core/components/stats";
+import { UnitStats } from "@core/components/unit-stats";
 import { UnitFlag } from "@core/components/unit-flag";
 import { UnitHeader } from "@core/components/unit-header";
 import { getCivBackground } from "@infra/helpers/get-civ-background";
 import { CivilizationsEnum } from "@domain/enums/civs";
+import { UnitAgeSelector } from "@core/components/unit-age-selector";
+import { Unit as UnitType } from "@domain/entities/unit";
 
 type Props = {
-  name: string;
+  unit: UnitType;
   civ: CivilizationsEnum;
 };
 
-export const Unit: React.FC<Props> = ({ name, civ }) => {
+export const Unit: React.FC<Props> = ({ unit, civ }) => {
   return (
     <li
-      className="rounded-2xl w-[300px] bg-foreground-800 relative"
-      onClick={() => console.log(getCivBackground(civ))}
+      className="rounded-2xl w-[350px] bg-foreground-800 relative"
+      onClick={() => console.log(unit)}
     >
       <UnitFlag civ={civ} />
       <div
         className="z-10 flex flex-col w-full gap-6 p-4 rounded-2xl"
         style={getCivBackground(civ)}
       >
-        <UnitHeader />
-        <Stats />
+        <UnitHeader unit={unit} />
+        <UnitAgeSelector />
+        <UnitStats unit={unit} />
       </div>
     </li>
   );

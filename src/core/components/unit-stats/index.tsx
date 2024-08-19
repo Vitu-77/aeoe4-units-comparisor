@@ -5,8 +5,10 @@ import { UnitWeapon } from "@domain/entities/unit-weapon";
 import { StatsTypesEnum } from "@domain/enums/stats-types";
 import { UnitWeaponType } from "@domain/enums/unit-weapon-type";
 import { IconType } from "react-icons";
-import { TbStar, TbStarFilled } from "react-icons/tb";
+import { TbBold, TbBolt, TbStar, TbStarFilled } from "react-icons/tb";
 import { UnitArmorType } from "@domain/enums/unit-armor-type";
+import { UnitCosts } from "@domain/entities/unit-costs";
+import { getResourceIcon } from "@infra/helpers/get-resource-icon";
 
 type RowProps = {
   label: string;
@@ -47,7 +49,13 @@ export const UnitStats: FC<UnitStatsProps> = ({ unit }) => {
       return (
         <>
           {renderIcon(Icon)}
-          <span className={`text-sm text-foreground-500 ${value ? '' : 'opacity-1'}`}>{value ?? "-"}</span>
+          <span
+            className={`text-sm text-foreground-500 ${
+              value ? "" : "opacity-1"
+            }`}
+          >
+            {value ?? "-"}
+          </span>
         </>
       );
     },
@@ -62,6 +70,33 @@ export const UnitStats: FC<UnitStatsProps> = ({ unit }) => {
     return weapon.damage * (weapon?.burst?.count ?? 1);
   }, []);
 
+  const renderCostsContent = useCallback((rawCosts: UnitCosts) => {
+    const unitCosts = {
+      food: rawCosts.food,
+      wood: rawCosts.wood,
+      gold: rawCosts.gold,
+      oliveoil: rawCosts.oliveoil,
+    };
+
+    const costs = Object.entries(unitCosts).filter((c) => c[1] !== 0);
+    const data = costs.map((c) => ({
+      label: c[0],
+      value: c[1],
+      icon: getResourceIcon(c[0]),
+    }));
+
+    return (
+      <div className="grid items-center w-full grid-cols-4 gap-3 mt-1">
+        {data.map((item) => (
+          <div className="flex items-center w-full gap-0.5" key={item.label}>
+            <img src={item.icon} className="w-[25px]" />
+            <small className="text-sm text-foreground-500">{item.value}</small>
+          </div>
+        ))}
+      </div>
+    );
+  }, []);
+
   const rows = useMemo<RowProps[]>(() => {
     return [
       {
@@ -69,9 +104,7 @@ export const UnitStats: FC<UnitStatsProps> = ({ unit }) => {
         label: STATS_ROWS_CONFIGS.melee_attack.label,
         content: renderSimpleContent(
           STATS_ROWS_CONFIGS.melee_attack.icon,
-          getWeaponDamage(
-            unit.weapons.find((w) => w.type === UnitWeaponType.MELEE)
-          )
+          unit.weapons.find((w) => w.type === UnitWeaponType.MELEE)?.damage
         ),
       },
       {
@@ -79,9 +112,7 @@ export const UnitStats: FC<UnitStatsProps> = ({ unit }) => {
         label: STATS_ROWS_CONFIGS.ranged_attack.label,
         content: renderSimpleContent(
           STATS_ROWS_CONFIGS.ranged_attack.icon,
-          getWeaponDamage(
-            unit.weapons.find((w) => w.type === UnitWeaponType.RANGED)
-          )
+          unit.weapons.find((w) => w.type === UnitWeaponType.RANGED)?.damage
         ),
       },
       {
@@ -89,9 +120,7 @@ export const UnitStats: FC<UnitStatsProps> = ({ unit }) => {
         label: STATS_ROWS_CONFIGS.torch_attack.label,
         content: renderSimpleContent(
           STATS_ROWS_CONFIGS.torch_attack.icon,
-          getWeaponDamage(
-            unit.weapons.find((w) => w.type === UnitWeaponType.FIRE)
-          )
+          unit.weapons.find((w) => w.type === UnitWeaponType.FIRE)?.damage
         ),
       },
       {
@@ -99,9 +128,7 @@ export const UnitStats: FC<UnitStatsProps> = ({ unit }) => {
         label: STATS_ROWS_CONFIGS.siege_attack.label,
         content: renderSimpleContent(
           STATS_ROWS_CONFIGS.siege_attack.icon,
-          getWeaponDamage(
-            unit.weapons.find((w) => w.type === UnitWeaponType.SIEGE)
-          )
+          unit.weapons.find((w) => w.type === UnitWeaponType.SIEGE)?.damage
         ),
       },
       // Survivability
@@ -129,8 +156,47 @@ export const UnitStats: FC<UnitStatsProps> = ({ unit }) => {
           unit.armor.find((a) => a.type === UnitArmorType.FIRE)?.value
         ),
       },
+
+      {
+        type: StatsTypesEnum.DYNAMICS,
+        label: STATS_ROWS_CONFIGS.sight.label,
+        content: renderSimpleContent(
+          STATS_ROWS_CONFIGS.sight.icon,
+          unit.sight.line
+        ),
+      },
+      {
+        type: StatsTypesEnum.DYNAMICS,
+        label: STATS_ROWS_CONFIGS.move_speed.label,
+        content: renderSimpleContent(
+          STATS_ROWS_CONFIGS.move_speed.icon,
+          unit.movement.speed
+        ),
+      },
+
+      {
+        type: StatsTypesEnum.PRODUCTION,
+        label: STATS_ROWS_CONFIGS.costs.label,
+        content: renderCostsContent(unit.costs),
+      },
+      {
+        type: StatsTypesEnum.PRODUCTION,
+        label: STATS_ROWS_CONFIGS.production_time.label,
+        content: renderSimpleContent(
+          STATS_ROWS_CONFIGS.production_time.icon,
+          unit.costs.time
+        ),
+      },
+      {
+        type: StatsTypesEnum.PRODUCTION,
+        label: STATS_ROWS_CONFIGS.pop_cap.label,
+        content: renderSimpleContent(
+          STATS_ROWS_CONFIGS.pop_cap.icon,
+          unit.costs.popcap
+        ),
+      },
     ];
-  }, [unit]);
+  }, [unit, renderSimpleContent, renderCostsContent, getWeaponDamage]);
 
   return (
     <ul className="flex flex-col gap-1 list-none">

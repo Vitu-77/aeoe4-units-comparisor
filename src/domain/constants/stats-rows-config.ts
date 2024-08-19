@@ -12,7 +12,9 @@ import {
   TbSwords,
   TbTargetArrow,
   TbMatchstick,
-  TbShieldCheckered
+  TbShieldCheckered,
+  TbClock,
+  TbHome
 } from "react-icons/tb";
 
 export const STATS_ROWS_CONFIGS = {
@@ -56,6 +58,21 @@ export const STATS_ROWS_CONFIGS = {
     type: StatsTypesEnum.SURVIVABILITY,
     label: "FIRE ARMOR",
     icon: TbFlame,
+  },
+  costs: {
+    type: StatsTypesEnum.PRODUCTION,
+    label: 'COSTS',
+    icon: null,
+  },
+  production_time: {
+    type: StatsTypesEnum.PRODUCTION,
+    label: 'PRODUCTION TIME',
+    icon: TbClock,
+  },
+  pop_cap: {
+    type: StatsTypesEnum.PRODUCTION,
+    label: 'OCCUPATION',
+    icon: TbHome,
   },
 
   sight: {

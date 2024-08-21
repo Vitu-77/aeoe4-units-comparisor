@@ -7,11 +7,12 @@ type Params = {
   civ?: CivilizationsEnum;
   name?: string;
   age?: number;
+  unique?: boolean
 };
 
 type DataEntry = (typeof data)[0];
 
-function getFilters({ civ, name, age }: Params) {
+function getFilters({ civ, name, age, unique }: Params) {
   const filterFn = (entry: DataEntry) => {
     const civCheck = civ
       ? entry.civs.includes(CivsAbbreviationsEnum[civ])
@@ -20,6 +21,7 @@ function getFilters({ civ, name, age }: Params) {
       ? entry.name.toLowerCase().includes(name.toLowerCase())
       : true;
     const ageCheck = age ? entry.age === age : true;
+    const uniqueCheck = unique !== undefined ? entry.unique === unique : true;
 
     return civCheck && nameCheck && ageCheck;
   };

@@ -1,19 +1,19 @@
 import abbasid from "./abbasid.webp";
-import ayyubids from "./ayyubids.abbasid.webp";
-import byzantines from "./byzantines.abbasid.webp";
-import chinese from "./chinese.abbasid.webp";
-import delhi from "./delhi.abbasid.webp";
-import english from "./english.abbasid.webp";
-import french from "./french.abbasid.webp";
-import hre from "./hre.abbasid.webp";
-import japanese from "./japanese.abbasid.webp";
-import jeannedarc from "./jeannedarc.abbasid.webp";
-import malians from "./malians.abbasid.webp";
-import mongols from "./mongols.abbasid.webp";
-import orderofthedragon from "./orderofthedragon.abbasid.webp";
-import ottomans from "./ottomans.abbasid.webp";
-import rus from "./rus.abbasid.webp";
-import zhuxi from "./zhuxi.abbasid.webp";
+import ayyubids from "./ayyubids.webp";
+import byzantines from "./byzantines.webp";
+import chinese from "./chinese.webp";
+import delhi from "./delhi.webp";
+import english from "./english.webp";
+import french from "./french.webp";
+import hre from "./hre.webp";
+import japanese from "./japanese.webp";
+import jeannedarc from "./jeannedarc.webp";
+import malians from "./malians.webp";
+import mongols from "./mongols.webp";
+import orderofthedragon from "./orderofthedragon.webp";
+import ottomans from "./ottomans.webp";
+import rus from "./rus.webp";
+import zhuxi from "./zhuxi.webp";
 
 export {
   abbasid,

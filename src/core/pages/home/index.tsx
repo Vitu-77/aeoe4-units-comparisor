@@ -1,32 +1,29 @@
-import React, { useMemo } from "react";
+import React, { useState } from "react";
 import { ComparisorGrid } from "@core/components/comparisor-grid";
 import { Unit } from "@core/components/unit";
 import { useComparisor } from "@core/contexts/comparisor-context";
-import { listCivs, listUnits } from "@infra/api";
-import { CivilizationsEnum } from "@domain/enums/civs";
+import { UnitsModal } from "@core/components/units-modal";
 
 export function Home() {
-  const { units } = useComparisor();
-  const civs = useMemo(() => listCivs(), []);
+  const comparisor = useComparisor();
+  const [showModal, setShowModal] = useState(true);
 
   return (
     <div className="flex flex-col w-full h-full p-8">
-      <div className="flex w-full gap-2 mb-6">
-        {civs.map((civ) => (
-          <img
-            className="w-[60px] cursor-pointer"
-            key={civ.name}
-            src={civ.flag}
-            onClick={() => console.log(listUnits({ civ: civ.name }))}
-          />
-        ))}
-      </div>
-
       <ComparisorGrid>
-        {units.map((unit, index) => (
+        {comparisor.units.map((unit, index) => (
           <Unit key={index} unit={unit} />
         ))}
+
+        <div
+          onClick={() => setShowModal(true)}
+          className="flex items-center justify-center w-[300px] text-white text-2xl h-full border-4 border-white cursor-pointer"
+        >
+          +
+        </div>
       </ComparisorGrid>
+
+      <UnitsModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </div>
   );
 }

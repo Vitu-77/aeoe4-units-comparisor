@@ -22,7 +22,7 @@ import React, {
 
 type IComparisorContext = {
   units: ParsedUnit[];
-  addUnit: (unit: Unit) => void;
+  addUnits: (unit: Unit[]) => void;
   removeUnit: (index: number) => void;
 };
 
@@ -36,14 +36,14 @@ export const ComparisorContext = createContext<IComparisorContext>({
 
 export const ComparisorProvider: React.FC<ProviderProps> = ({ children }) => {
   const [data, setData] = useState<Unit[]>([
-    ARCHER,
-    LANDSKENETCH,
-    WAR_ELEPHANT,
-    ROYAL_KNIGHT,
+    // ARCHER,
+    // LANDSKENETCH,
+    // WAR_ELEPHANT,
+    // ROYAL_KNIGHT,
   ]);
 
-  const addUnit = useCallback((unit: Unit) => {
-    setData((prev) => [...prev, unit]);
+  const addUnits = useCallback((unit: Unit[]) => {
+    setData((prev) => [...prev, ...unit]);
   }, []);
 
   const removeUnit = useCallback((index: number) => {
@@ -92,7 +92,7 @@ export const ComparisorProvider: React.FC<ProviderProps> = ({ children }) => {
   }, [data, collectStatsRowValues]);
 
   return (
-    <ComparisorContext.Provider value={{ units, addUnit, removeUnit }}>
+    <ComparisorContext.Provider value={{ units, addUnits, removeUnit }}>
       {children}
     </ComparisorContext.Provider>
   );

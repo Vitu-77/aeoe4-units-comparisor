@@ -3,7 +3,7 @@ import { CivilizationsEnum } from "@domain/enums/civs";
 import { CivsAbbreviationsEnum } from "@domain/enums/civs-abbreviations";
 import { data } from "@infra/api/data/units.json";
 
-type Params = {
+export type ListUnitsParams = {
   civ?: CivilizationsEnum;
   name?: string;
   age?: number;
@@ -12,7 +12,7 @@ type Params = {
 
 type DataEntry = (typeof data)[0];
 
-function getFilters({ civ, name, age, unique }: Params) {
+function getFilters({ civ, name, age, unique }: ListUnitsParams) {
   const filterFn = (entry: DataEntry) => {
     const civCheck = civ
       ? entry.civs.includes(CivsAbbreviationsEnum[civ])
@@ -29,6 +29,6 @@ function getFilters({ civ, name, age, unique }: Params) {
   return filterFn;
 }
 
-export function listUnits(params?: Params): Unit[] {
+export function listUnits(params?: ListUnitsParams): Unit[] {
   return data.filter(getFilters(params)) as Unit[];
 }

@@ -17,6 +17,7 @@ export default defineConfig({
       "@assets": "/src/assets",
       "@core": "/src/core",
       "@domain": "/src/domain",
+      "@data": "/src/data",
     },
   },
   plugins: [react()],

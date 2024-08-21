@@ -25,7 +25,8 @@
       "@infra/*": ["src/infra/*"],
       "@core/*": ["src/core/*"],
       "@assets/*": ["src/assets/*"],
-      "@domain/*": ["src/domain/*"]
+      "@domain/*": ["src/domain/*"],
+      "@data/*": ["src/data/*"],
     }
   },
   "include": ["src", "src/**/*"],

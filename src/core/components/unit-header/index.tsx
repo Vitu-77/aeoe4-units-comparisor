@@ -1,8 +1,8 @@
-import { Unit } from "@domain/entities/unit";
+import { ParsedUnit } from "@domain/entities/parsed-unit";
 import React, { FC } from "react";
 
 type Props = {
-  unit: Unit;
+  unit: ParsedUnit;
 };
 
 export const UnitHeader: FC<Props> = ({ unit }) => {
@@ -14,7 +14,7 @@ export const UnitHeader: FC<Props> = ({ unit }) => {
 
       <div className="flex flex-col">
         <h3 className="text-lg font-semibold text-primary-300">{unit.name}</h3>
-        <p className="text-xs font-normal text-white">{unit.displayClasses[0]}</p>
+        <p className="text-xs font-normal text-white">{unit.description}</p>
       </div>
     </header>
   );

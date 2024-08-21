@@ -1,0 +1,72 @@
+{
+  "id": "streltsy-4",
+  "baseId": "streltsy",
+  "type": "unit",
+  "name": "Streltsy",
+  "pbgid": 133458,
+  "attribName": "unit_handcannon_4_rus",
+  "age": 4,
+  "civs": [
+    "ru"
+  ],
+  "description": "Most powerful ranged infantry with reasonable melee capabilities. Increased attack speed while stationary.\n+ High damage\n+ Lower cost than Handcannoneer\n- Slow movement speed",
+  "classes": [
+    "light",
+    "ranged",
+    "gunpowder",
+    "infantry"
+  ],
+  "displayClasses": [
+    "Light Ranged Gunpowder Infantry"
+  ],
+  "unique": true,
+  "costs": {
+    "food": 90,
+    "wood": 0,
+    "stone": 0,
+    "gold": 90,
+    "vizier": 0,
+    "oliveoil": 0,
+    "total": 180,
+    "popcap": 1,
+    "time": 35
+  },
+  "producedBy": [
+    "archery-range"
+  ],
+  "icon": "https://data.aoe4world.com/images/units/streltsy-4.png",
+  "hitpoints": 130,
+  "weapons": [
+    {
+      "name": "Handcannon",
+      "type": "ranged",
+      "damage": 35,
+      "speed": 2.125,
+      "range": {
+        "min": 0,
+        "max": 4
+      },
+      "modifiers": [],
+      "durations": {
+        "aim": 0.25,
+        "windup": 0,
+        "attack": 0.125,
+        "winddown": 0.5,
+        "reload": 1.25,
+        "setup": 0,
+        "teardown": 0,
+        "cooldown": 0
+      },
+      "attribName": "weapon_handcannon_4_rus",
+      "pbgid": 133305
+    }
+  ],
+  "armor": [],
+  "sight": {
+    "line": 32,
+    "height": 10
+  },
+  "movement": {
+    "speed": 1.125
+  }
+}

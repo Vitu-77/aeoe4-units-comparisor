@@ -8,5 +8,7 @@ export type ParsedUnit = {
   icon: string;
   name: string;
   civ: CivilizationsEnum;
-  stats: ParsedUnitStats
+  age: number;
+  description: string;
+  stats: ParsedUnitStats;
 };

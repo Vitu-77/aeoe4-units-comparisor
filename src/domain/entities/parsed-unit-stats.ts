@@ -1,65 +1,73 @@
 import { ParsedUnitCosts } from "@domain/entities/parsed-unit-costs";
 import { StatStatus } from "@domain/enums/stat-status";
+import { StatsTypesEnum } from "@domain/enums/stats-types";
+
+export type ParsedUnitStatValue = undefined | null | string | number;
 
 export type ParsedUnitStats = {
   hitpoints: {
-    value: number
-    status?: StatStatus
-  };
-  description: {
-    value: string
-    status?: StatStatus
-  };
-  age: {
-    value: number
-    status?: StatStatus
+    value: number;
+    type: StatsTypesEnum;
+    status?: StatStatus;
   };
   meleeAttack?: {
-    value: number | null
-    status?: StatStatus
+    value: number | null;
+    type: StatsTypesEnum;
+    status?: StatStatus;
   };
   rangedAttack?: {
-    value: number | null
-    status?: StatStatus
+    value: number | null;
+    type: StatsTypesEnum;
+    status?: StatStatus;
   };
-  fireAttack?: {
-    value: number | null
-    status?: StatStatus
+  torchAttack?: {
+    value: number | null;
+    type: StatsTypesEnum;
+    status?: StatStatus;
   };
   siegeAttack?: {
-    value: number | null
-    status?: StatStatus
+    value: number | null;
+    type: StatsTypesEnum;
+    status?: StatStatus;
   };
   meleeArmor?: {
-    value: number | null
-    status?: StatStatus
+    value: number | null;
+    type: StatsTypesEnum;
+    status?: StatStatus;
   };
   rangedArmor?: {
-    value: number | null
-    status?: StatStatus
+    value: number | null;
+    type: StatsTypesEnum;
+    status?: StatStatus;
   };
   fireArmor?: {
-    value: number | null
-    status?: StatStatus
+    value: number | null;
+    type: StatsTypesEnum;
+    status?: StatStatus;
   };
   sight: {
-    value: number
-    status?: StatStatus
+    value: number;
+    type: StatsTypesEnum;
+    status?: StatStatus;
   };
   moveSpeed: {
-    value: number
-    status?: StatStatus
+    value: number;
+    type: StatsTypesEnum;
+    status?: StatStatus;
   };
   costs: {
-    value: ParsedUnitCosts
-    status?: StatStatus
+    value: ParsedUnitCosts;
+    type: StatsTypesEnum;
+    status?: StatStatus;
   };
   productionTime: {
-    value: number
-    status?: StatStatus
+    value: number;
+    type: StatsTypesEnum;
+    status?: StatStatus;
   };
   popCap: {
-    value: number
-    status?: StatStatus
+    value: number;
+    type: StatsTypesEnum;
+    status?: StatStatus;
   };
-}
+};

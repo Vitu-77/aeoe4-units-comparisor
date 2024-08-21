@@ -1,88 +1,121 @@
-
-import { StatsTypesEnum } from "@domain/enums/stats-types";
 import {
   TbBolt,
   TbBow,
   TbEye,
   TbFlame,
-  TbFlameOff,
   TbHeart,
   TbMeteor,
-  TbShield,
   TbSwords,
   TbTargetArrow,
   TbMatchstick,
   TbShieldCheckered,
   TbClock,
-  TbHome
+  TbHome,
 } from "react-icons/tb";
 
 export const STATS_ROWS_CONFIGS = {
-  melee_attack: {
-    type: StatsTypesEnum.ATTACK,
+  meleeAttack: {
     label: "MELEE ATTACK",
     icon: TbSwords,
+    comparisonFns: {
+      best: Math.max,
+      worst: Math.min
+    },
   },
-  ranged_attack: {
-    type: StatsTypesEnum.ATTACK,
+  rangedAttack: {
     label: "RANGED ATTACK",
     icon: TbBow,
+    comparisonFns: {
+      best: Math.max,
+      worst: Math.min
+    },
   },
-  torch_attack: {
-    type: StatsTypesEnum.ATTACK,
+  torchAttack: {
     label: "TORCH ATTACK",
     icon: TbMatchstick,
+    comparisonFns: {
+      best: Math.max,
+      worst: Math.min
+    },
   },
-  siege_attack: {
-    type: StatsTypesEnum.ATTACK,
+  siegeAttack: {
     label: "SIEGE ATTACK",
     icon: TbMeteor,
+    comparisonFns: {
+      best: Math.max,
+      worst: Math.min
+    },
   },
-
   hitpoints: {
-    type: StatsTypesEnum.SURVIVABILITY,
     label: "HITPOINTS",
     icon: TbHeart,
+    comparisonFns: {
+      best: Math.max,
+      worst: Math.min
+    },
   },
-  melee_armor: {
-    type: StatsTypesEnum.SURVIVABILITY,
+  meleeArmor: {
     label: "MELEE ARMOR",
     icon: TbShieldCheckered,
+    comparisonFns: {
+      best: Math.max,
+      worst: Math.min
+    },
   },
-  ranged_armor: {
-    type: StatsTypesEnum.SURVIVABILITY,
+  rangedArmor: {
     label: "RANGED ARMOR",
     icon: TbTargetArrow,
+    comparisonFns: {
+      best: Math.max,
+      worst: Math.min
+    },
   },
-  fire_armor: {
-    type: StatsTypesEnum.SURVIVABILITY,
+  fireArmor: {
     label: "FIRE ARMOR",
     icon: TbFlame,
+    comparisonFns: {
+      best: Math.max,
+      worst: Math.min
+    },
   },
   costs: {
-    type: StatsTypesEnum.PRODUCTION,
-    label: 'COSTS',
+    label: "COSTS",
     icon: null,
+    comparisonFns: {
+      best: Math.min,
+      worst: Math.max
+    },
   },
-  production_time: {
-    type: StatsTypesEnum.PRODUCTION,
-    label: 'PRODUCTION TIME',
+  productionTime: {
+    label: "PRODUCTION TIME",
     icon: TbClock,
+    comparisonFns: {
+      best: Math.min,
+      worst: Math.max
+    },
   },
-  pop_cap: {
-    type: StatsTypesEnum.PRODUCTION,
-    label: 'OCCUPATION',
+  popCap: {
+    label: "OCCUPATION",
     icon: TbHome,
+    comparisonFns: {
+      best: Math.min,
+      worst: Math.max
+    },
   },
-
   sight: {
-    type: StatsTypesEnum.DYNAMICS,
     label: "SIGHT",
     icon: TbEye,
+    comparisonFns: {
+      best: Math.max,
+      worst: Math.min
+    },
   },
-  move_speed: {
-    type: StatsTypesEnum.DYNAMICS,
+  moveSpeed: {
     label: "MOVE SPEED",
     icon: TbBolt,
+    comparisonFns: {
+      best: Math.max,
+      worst: Math.min
+    },
   },
 };

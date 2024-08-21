@@ -1,5 +1,5 @@
 export enum StatStatus {
-  L = 'L',
-  D = 'D',
-  H = 'H',
+  WORST = "WORST",
+  DRAW = "DRAW",
+  BEST = "BEST",
 }

@@ -1,4 +1,6 @@
 import { Unit } from "@domain/entities/unit";
+import { getCivFlag } from "@infra/helpers/get-civ-flag";
+import { getUnitCiv } from "@infra/helpers/get-unit-civ";
 import React from "react";
 import { TbX } from "react-icons/tb";
 
@@ -20,7 +22,10 @@ const SelectedUnit: React.FC<SelectedUnitProps> = ({
 }) => {
   return (
     <div className="flex items-center gap-4 px-2 py-1 rounded-lg bg-black/30">
-      <span className="text-sm text-foreground-300">{unit.name}</span>
+      <div className="flex items-center gap-2">
+      <img className="w-[20px]" src={getCivFlag(getUnitCiv(unit))} />
+        <span className="text-sm text-foreground-300">{unit.name}</span>
+      </div>
       <TbX
         className="text-xs text-foreground-500 hover:text-foreground-50"
         onClick={() => onRemove(index)}

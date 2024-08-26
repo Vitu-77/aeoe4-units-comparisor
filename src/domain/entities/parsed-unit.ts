@@ -2,7 +2,8 @@ import { ParsedUnitStats } from "@domain/entities/parsed-unit-stats";
 import { CivilizationsEnum } from "@domain/enums/civs";
 
 export type ParsedUnit = {
-  id: string;
+  id: number;
+  index: number;
   baseId: string;
   producedBy: string[];
   icon: string;
@@ -11,4 +12,5 @@ export type ParsedUnit = {
   age: number;
   description: string;
   stats: ParsedUnitStats;
+  color: string;
 };

@@ -8,11 +8,14 @@ export enum CivilizationsEnum {
   FRENCH = 'french',
   HRE = 'hre',
   JAPANESE = 'japanese',
-  JEANNE_DARC = 'jeannedarc',
+  JEANNEDARC = 'jeannedarc',
   MALIANS = 'malians',
   MONGOLS = 'mongols',
-  OOTD = 'orderofthedragon',
+  ORDEROFTHEDRAGON = 'orderofthedragon',
   ottomans = 'ottomans',
   RUS = 'rus',
   ZHU_XI = 'zhuxi',
 }
+
+
+

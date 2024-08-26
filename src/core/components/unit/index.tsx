@@ -9,9 +9,10 @@ import { ParsedUnit } from "@domain/entities/parsed-unit";
 
 type Props = {
   unit: ParsedUnit;
+  index: number;
 };
 
-export const Unit: React.FC<Props> = ({ unit }) => {
+export const Unit: React.FC<Props> = ({ unit, index }) => {
   return (
     <li className="rounded-2xl w-[350px] bg-foreground-800 relative">
       <UnitFlag civ={unit.civ} />
@@ -20,7 +21,7 @@ export const Unit: React.FC<Props> = ({ unit }) => {
         style={getCivBackground(unit.civ)}
       >
         <UnitHeader unit={unit} />
-        <UnitAgeSelector />
+        <UnitAgeSelector unit={unit} index={index} />
         <UnitStats stats={unit.stats} />
       </div>
     </li>

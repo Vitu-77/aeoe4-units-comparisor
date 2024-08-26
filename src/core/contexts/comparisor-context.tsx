@@ -1,9 +1,4 @@
-import {
-  ARCHER,
-  LANDSKENETCH,
-  ROYAL_KNIGHT,
-  WAR_ELEPHANT,
-} from "@core/contexts/data";
+import { useSearchParams } from "react-router-dom";
 import { STATS_ROWS_CONFIGS } from "@domain/constants/stats-rows-config";
 import { ParsedUnit } from "@domain/entities/parsed-unit";
 import { ParsedUnitCosts } from "@domain/entities/parsed-unit-costs";
@@ -16,14 +11,18 @@ import React, {
   ReactNode,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
 } from "react";
+import { listUnits } from "@infra/api";
+import { getUnitCiv } from "@infra/helpers/get-unit-civ";
 
 type IComparisorContext = {
   units: ParsedUnit[];
   addUnits: (unit: Unit[]) => void;
   removeUnit: (index: number) => void;
+  changeUnitAge: (unitIndex: number, age: number) => void;
 };
 
 type ProviderProps = {
@@ -35,12 +34,20 @@ export const ComparisorContext = createContext<IComparisorContext>({
 } as IComparisorContext);
 
 export const ComparisorProvider: React.FC<ProviderProps> = ({ children }) => {
-  const [data, setData] = useState<Unit[]>([
-    // ARCHER,
-    // LANDSKENETCH,
-    // WAR_ELEPHANT,
-    // ROYAL_KNIGHT,
-  ]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [data, setData] = useState<Unit[]>(() => {
+    const idsParams = searchParams.getAll("units");
+    const ids = idsParams ? idsParams.map((id) => Number(id)) : null;
+    return ids.length ? listUnits({ ids }) : [];
+  });
+
+  useEffect(() => {
+    const unitsIds = data.map((item) => String(item.pbgid));
+
+    if (unitsIds.length) {
+      setSearchParams({ units: unitsIds });
+    }
+  }, [data]);
 
   const addUnits = useCallback((unit: Unit[]) => {
     setData((prev) => [...prev, ...unit]);
@@ -64,8 +71,24 @@ export const ComparisorProvider: React.FC<ProviderProps> = ({ children }) => {
     []
   );
 
+  const changeUnitAge = useCallback(
+    (unitIndex: number, age: number) => {
+      const unit = data[unitIndex];
+      const [newUnit] = listUnits({
+        age,
+        baseId: unit.baseId,
+        civ: getUnitCiv(unit),
+      });
+
+      const updatedData = [...data];
+      updatedData.splice(unitIndex, 1, newUnit);
+      setData(updatedData);
+    },
+    [data]
+  );
+
   const units = useMemo(() => {
-    const parsedData = data.map((unit) => parseUnit(unit));
+    const parsedData = data.map((unit, index) => parseUnit(unit, index));
 
     Object.entries(STATS_ROWS_CONFIGS).forEach(([key, { comparisonFns }]) => {
       const values = collectStatsRowValues(parsedData, key);
@@ -92,7 +115,9 @@ export const ComparisorProvider: React.FC<ProviderProps> = ({ children }) => {
   }, [data, collectStatsRowValues]);
 
   return (
-    <ComparisorContext.Provider value={{ units, addUnits, removeUnit }}>
+    <ComparisorContext.Provider
+      value={{ units, addUnits, removeUnit, changeUnitAge }}
+    >
       {children}
     </ComparisorContext.Provider>
   );

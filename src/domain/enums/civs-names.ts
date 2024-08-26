@@ -1,0 +1,18 @@
+export enum CivsNamesEnum {
+  ABBASID = "Abbasid",
+  AYYUBIDS = "Ayyubids",
+  BYZANTINES = "Byzantines",
+  CHINESE = "Chinese",
+  DELHI = "Delhi",
+  ENGLISH = "English",
+  FRENCH = "French",
+  HRE = "Holy Roman Empire",
+  JAPANESE = "Japanese",
+  JEANNEDARC = "Jeanne D'arc",
+  MALIANS = "Malians",
+  MONGOLS = "Mongols",
+  ORDEROFTHEDRAGON = "Order of The Dragon",
+  OTTOMANS = "Ottomans",
+  RUS = "Rus",
+  ZHUXI = "Zhu-Xi Legacy",
+}

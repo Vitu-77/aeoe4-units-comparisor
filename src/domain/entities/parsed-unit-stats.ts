@@ -4,47 +4,31 @@ import { StatsTypesEnum } from "@domain/enums/stats-types";
 
 export type ParsedUnitStatValue = undefined | null | string | number;
 
+export type UnitAttackStat = {
+  value: number | null;
+  type: StatsTypesEnum;
+  status?: StatStatus;
+}
+
+export type UnitArmorStat = {
+  value: number | null;
+  type: StatsTypesEnum;
+  status?: StatStatus;
+}
+
 export type ParsedUnitStats = {
   hitpoints: {
     value: number;
     type: StatsTypesEnum;
     status?: StatStatus;
   };
-  meleeAttack?: {
-    value: number | null;
-    type: StatsTypesEnum;
-    status?: StatStatus;
-  };
-  rangedAttack?: {
-    value: number | null;
-    type: StatsTypesEnum;
-    status?: StatStatus;
-  };
-  torchAttack?: {
-    value: number | null;
-    type: StatsTypesEnum;
-    status?: StatStatus;
-  };
-  siegeAttack?: {
-    value: number | null;
-    type: StatsTypesEnum;
-    status?: StatStatus;
-  };
-  meleeArmor?: {
-    value: number | null;
-    type: StatsTypesEnum;
-    status?: StatStatus;
-  };
-  rangedArmor?: {
-    value: number | null;
-    type: StatsTypesEnum;
-    status?: StatStatus;
-  };
-  fireArmor?: {
-    value: number | null;
-    type: StatsTypesEnum;
-    status?: StatStatus;
-  };
+  meleeAttack?: UnitAttackStat;
+  rangedAttack?: UnitAttackStat;
+  torchAttack?: UnitAttackStat;
+  siegeAttack?: UnitAttackStat;
+  meleeArmor?: UnitArmorStat;
+  rangedArmor?: UnitArmorStat;
+  fireArmor?: UnitArmorStat;
   sight: {
     value: number;
     type: StatsTypesEnum;

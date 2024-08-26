@@ -1,7 +1,7 @@
 import { Unit } from "@domain/entities/unit";
 import { CivilizationsEnum } from "@domain/enums/civs";
 
-const CIVS_MAP = {
+const ABBREVIATIONS_MAP = {
   ab: CivilizationsEnum.ABBASID,
   ay: CivilizationsEnum.AYYUBIDS,
   by: CivilizationsEnum.BYZANTINES,
@@ -11,10 +11,10 @@ const CIVS_MAP = {
   fr: CivilizationsEnum.FRENCH,
   hr: CivilizationsEnum.HRE,
   ja: CivilizationsEnum.JAPANESE,
-  je: CivilizationsEnum.JEANNE_DARC,
+  je: CivilizationsEnum.JEANNEDARC,
   ma: CivilizationsEnum.MALIANS,
   mo: CivilizationsEnum.MONGOLS,
-  od: CivilizationsEnum.OOTD,
+  od: CivilizationsEnum.ORDEROFTHEDRAGON,
   ot: CivilizationsEnum.ottomans,
   ru: CivilizationsEnum.RUS,
   zx: CivilizationsEnum.ZHU_XI,
@@ -22,5 +22,5 @@ const CIVS_MAP = {
 
 export function getUnitCiv(unit: Unit): CivilizationsEnum {
   const civAbbreviation = unit.civs[0]
-  return CIVS_MAP[civAbbreviation]
+  return ABBREVIATIONS_MAP[civAbbreviation]
 }

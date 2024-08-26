@@ -3,25 +3,23 @@ import { ComparisorGrid } from "@core/components/comparisor-grid";
 import { Unit } from "@core/components/unit";
 import { useComparisor } from "@core/contexts/comparisor-context";
 import { UnitsModal } from "@core/components/units-modal";
+import { AddUnitButton } from "@core/components/add-unit-button";
+import { RadarComparisor } from "@core/components/radar-comparisor";
 
 export function Home() {
   const comparisor = useComparisor();
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="flex flex-col w-full h-full p-8">
       <ComparisorGrid>
         {comparisor.units.map((unit, index) => (
-          <Unit key={index} unit={unit} />
+          <Unit key={index} unit={unit} index={index} />
         ))}
-
-        <div
-          onClick={() => setShowModal(true)}
-          className="flex items-center justify-center w-[300px] text-white text-2xl h-full border-4 border-white cursor-pointer"
-        >
-          +
-        </div>
+        <AddUnitButton onClick={() => setShowModal(true)} />
       </ComparisorGrid>
+
+      <RadarComparisor units={comparisor.units} />
 
       <UnitsModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </div>
